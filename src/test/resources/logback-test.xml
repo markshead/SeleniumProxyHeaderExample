@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true">
+    <logger name="org.springframework" level="INFO"/>
+    <root level="INFO"/>
+
+</configuration>
