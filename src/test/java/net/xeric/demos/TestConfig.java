@@ -37,9 +37,7 @@ public class TestConfig {
         int port = proxy.getPort();
         proxy.addHeader("My-Header", "My-Header-Value");
         Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxy);
-
-
-
+        
         // configure it as a desired capability
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
