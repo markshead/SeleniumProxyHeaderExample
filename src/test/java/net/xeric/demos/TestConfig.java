@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 /**
  * This is the Spring configuration file that allows us to get the webdriver.
@@ -35,9 +36,9 @@ public class TestConfig {
         BrowserMobProxy proxy = new BrowserMobProxyServer();
         proxy.start(0);
         int port = proxy.getPort();
-        proxy.addHeader("My-Header", "My-Header-Value");
+
         Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxy);
-        
+        proxy.addHeader("My-Header", "My-Header-Value");
         // configure it as a desired capability
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
@@ -45,6 +46,8 @@ public class TestConfig {
 
         String driverPath = isWindows()? WINDOWS_CHROME_DRIVER : MAC_CHROME_DRIVER;
         System.setProperty("webdriver.chrome.driver", driverPath);
+        //HtmlUnitDriver driver = new HtmlUnitDriver(capabilities);
+      //  return driver;
         return new ChromeDriver(capabilities);
     }
 
